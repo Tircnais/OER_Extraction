@@ -10,19 +10,21 @@ import scrapy
 
 class OntoItem(scrapy.Item):
     #info de la ontologia
-    o_id = scrapy.Field()
-    o_name = scrapy.Field()
-    o_description = scrapy.Field()
-    o_url = scrapy.Field()
+    oId = scrapy.Field()
+    oName = scrapy.Field()
+    oDescription = scrapy.Field()
+    oUrl = scrapy.Field()
 
 class SujetoItem(scrapy.Item):
-    s_prefix = scrapy.Field()
-    s_uri = scrapy.Field()
-    s_label = scrapy.Field()
-    s_description = scrapy.Field()
+    fkOnto = scrapy.Field()
+    sPrefix = scrapy.Field()
+    sUri = scrapy.Field()
+    sLabel = scrapy.Field()
+    sDescription = scrapy.Field()
 
 class PredicadoItem(scrapy.Item):
-    p_prefix = scrapy.Field()
-    p_uri = scrapy.Field()
-    p_label = scrapy.Field()
-    p_description = scrapy.Field()
+    fkOnto = scrapy.Field()
+    pPrefix = scrapy.Field()
+    pUri = scrapy.Field()
+    pLabel = scrapy.Field()
+    pDescription = scrapy.Field()

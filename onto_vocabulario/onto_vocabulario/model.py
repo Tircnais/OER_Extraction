@@ -3,18 +3,24 @@ from sqlalchemy.orm import mapper, sessionmaker
 from sqlalchemy import Column, Integer
 from sqlalchemy.ext.declarative import declarative_base
 
-engine = create_engine('mysql+pymysql://root:@192.168.56.1/oer', echo=True)
+from sqlalchemy import create_engine
+
+engine = create_engine('mysql+pymysql://root@localhost/oer', echo=True)
+# mysqlclient (a maintained fork of MySQL-Python)
+# engine = create_engine('mysql+mysqldb://s:tiger@localhost/foo')
+# engine = create_engine('mysql+mysqldb://...', pool_recycle=3600)
+
 Base = declarative_base(engine)
 
-class ontologia(Base):
+class Ontologia(Base):
     __tablename__ = 'ontologies'
     __table_args__ = {'autoload': True}
 
-class sujetos(Base):
+class Sujetos(Base):
     __tablename__ = 'subjects'
     __table_args__ = {'autoload': True}
 
-class predicados(Base):
+class Predicados(Base):
     __tablename__ = 'predicates'
     __table_args__ = {'autoload': True}
 
