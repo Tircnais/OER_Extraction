@@ -11,11 +11,20 @@ from .model import *
 
 class OntoVocabularioPipeline(object):
     def process_item(self, item, spider):
-        print("Saving item %s\n" % str(item))
+        # print("Saving item %s\n" % str(item))
+        """
+        {'fkOnto': 2, 'pDescription': '',
+         'pLabel': 'phone', 'pPrefix': 'http://xmlns.com/foaf/spec/phone',
+         'pUri': 'http://xmlns.com/foaf/spec/#term_phone'}
+        """
+        
         session = load_session()
-        session.add(Sujetos(fk_onto=item["fkOnto"], s_prefix=item["sPrefix"], s_uri=item["sUri"], s_label=item["sLabel"], s_description=item["sDescription"]))
+        # key ITEM
+        if 'sPrefix' in item:
+            session.add(Sujetos(fk_onto=item["fkOnto"], s_prefix=item["sPrefix"], s_uri=item["sUri"], s_label=item["sLabel"], s_description=item["sDescription"]))
+        else:
+            session.add(Predicados(fk_onto=item["fkOnto"], p_prefix=item["pPrefix"], p_uri=item["pUri"], p_label=item["pLabel"], p_description=item["pDescription"]))
 
-        # session.add(Predicados(fk_onto=item["fkOnto"], p_prefix=item["pPrefix"], p_uri=item["pUri"], p_label=item["pLabel"], p_description=item["pDescription"]))
         # hasta el commit
         session.commit()
         return 'New added'

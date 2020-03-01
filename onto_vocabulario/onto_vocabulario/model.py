@@ -1,14 +1,11 @@
-from sqlalchemy import create_engine, MetaData, Table
+# from sqlalchemy import create_engine, MetaData, Table
+# from sqlalchemy import Column, Integer
 from sqlalchemy.orm import mapper, sessionmaker
-from sqlalchemy import Column, Integer
 from sqlalchemy.ext.declarative import declarative_base
-
 from sqlalchemy import create_engine
 
 engine = create_engine('mysql+pymysql://root@localhost/oer', echo=True)
 # mysqlclient (a maintained fork of MySQL-Python)
-# engine = create_engine('mysql+mysqldb://s:tiger@localhost/foo')
-# engine = create_engine('mysql+mysqldb://...', pool_recycle=3600)
 
 Base = declarative_base(engine)
 
